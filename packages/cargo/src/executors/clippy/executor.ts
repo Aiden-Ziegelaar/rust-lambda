@@ -4,7 +4,7 @@ import CLIOptions from "./schema";
 
 export default async function (opts: CLIOptions, ctx: ExecutorContext) {
 	try {
-		let args = parseArgs(opts, ctx);
+		const args = parseArgs(opts, ctx);
 		await runCargo(args, ctx);
 
 		return { success: true };
@@ -17,7 +17,7 @@ export default async function (opts: CLIOptions, ctx: ExecutorContext) {
 }
 
 function parseArgs(opts: CLIOptions, ctx: ExecutorContext): string[] {
-	let args = ["clippy"];
+	const args = ["clippy"];
 
 	if (!ctx.projectName) {
 		throw new Error("Expected project name to be non-null");

@@ -25,8 +25,7 @@
 			"files": ["*.ts", "*.tsx"],
 			"extends": ["plugin:@nrwl/nx/typescript"],
 			"rules": {
-				"prefer-const": "off",
-				"prefer-let/prefer-let": "warn",
+				"prefer-const": "error",
 				"@typescript-eslint/no-non-null-assertion": "off",
 				"@typescript-eslint/no-unused-vars": [
 					"warn",

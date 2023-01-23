@@ -14,7 +14,7 @@ import CLIOptions from "./schema";
 type Options = CLIOptions & GeneratorOptions;
 
 export default async function (host: Tree, opts: CLIOptions) {
-	let options = normalizeGeneratorOptions("application", host, opts);
+	const options = normalizeGeneratorOptions("application", host, opts);
 
 	nrwl.addProjectConfiguration(host, options.projectName, {
 		root: options.projectRoot,
@@ -65,7 +65,7 @@ async function addFiles(host: Tree, opts: Options) {
 		await cargoInit(host, {});
 	}
 
-	let substitutions = {
+	const substitutions = {
 		projectName: opts.projectName,
 		edition: opts.edition,
 		template: "",

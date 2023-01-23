@@ -12,23 +12,23 @@ describe("init generator", () => {
 
 	it("should run successfully", async () => {
 		await runGenerator(appTree, {});
-		let changes = appTree.listChanges();
+		const changes = appTree.listChanges();
 
-		let cargoToml = changes.find(c => c.path === "Cargo.toml");
-		let toolchainToml = changes.find(c => c.path === "rust-toolchain.toml");
-		let rustfmtToml = changes.find(c => c.path === "rustfmt.toml");
+		const cargoToml = changes.find(c => c.path === "Cargo.toml");
+		const toolchainToml = changes.find(c => c.path === "rust-toolchain.toml");
+		const rustfmtToml = changes.find(c => c.path === "rustfmt.toml");
 
 		expect(cargoToml).toBeTruthy();
 		expect(toolchainToml).toBeTruthy();
 		expect(rustfmtToml).toBeTruthy();
 
-		let content = toolchainToml?.content!.toString();
+		const content = toolchainToml?.content!.toString();
 		expect(content).toContain(`channel = "stable"`);
 	});
 
 	it("should respect the 'toolchain' CLI option", async () => {
 		await runGenerator(appTree, { toolchain: "nightly" });
-		let toolchainToml = appTree
+		const toolchainToml = appTree
 			.listChanges()
 			.find(c => c.path === "rust-toolchain.toml")!
 			.content!.toString();
@@ -38,12 +38,12 @@ describe("init generator", () => {
 
 	it("should add the graph plugin to nx.json plugins", async () => {
 		await runGenerator(appTree, {});
-		let changes = appTree.listChanges();
+		const changes = appTree.listChanges();
 
-		let nxJson = changes.find(c => c.path === "nx.json");
+		const nxJson = changes.find(c => c.path === "nx.json");
 		expect(nxJson).toBeTruthy();
 
-		let json = JSON.parse(nxJson!.content!.toString());
+		const json = JSON.parse(nxJson!.content!.toString());
 		expect(json.plugins).toContain("@nxrs/cargo");
 	});
 });

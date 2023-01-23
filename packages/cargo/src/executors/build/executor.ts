@@ -5,7 +5,7 @@ import CLIOptions from "./schema";
 
 export default async function (opts: CLIOptions, ctx: ExecutorContext) {
 	try {
-		let args = parseCargoArgs(opts, ctx);
+		const args = parseCargoArgs(opts, ctx);
 		await runCargo(args, ctx);
 
 		return { success: true };

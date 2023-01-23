@@ -13,7 +13,7 @@ interface Options extends CLIOptions {
 }
 
 export default async function (host: Tree, opts: CLIOptions) {
-	let options = normalizeOptions(host, opts);
+	const options = normalizeOptions(host, opts);
 	addFiles(host, options);
 	addPlugin(host, options);
 
@@ -21,13 +21,13 @@ export default async function (host: Tree, opts: CLIOptions) {
 }
 
 function normalizeOptions(_: Tree, options: CLIOptions): Options {
-	let toolchain = options.toolchain ?? "stable";
+	const toolchain = options.toolchain ?? "stable";
 
 	return { toolchain };
 }
 
 function addFiles(host: Tree, options: Options) {
-	let templateOptions = {
+	const templateOptions = {
 		toolchain: options.toolchain,
 		template: "",
 	};
@@ -41,8 +41,8 @@ function addFiles(host: Tree, options: Options) {
 }
 
 function addPlugin(host: Tree, _: Options) {
-	let config = nrwl.readWorkspaceConfiguration(host);
-	let plugins = config.plugins
+	const config = nrwl.readWorkspaceConfiguration(host);
+	const plugins = config.plugins
 		? config.plugins.concat("@nxrs/cargo")
 		: ["@nxrs/cargo"];
 
